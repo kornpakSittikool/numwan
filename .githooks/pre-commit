@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm_bin="pnpm"
+elif command -v pnpm.cmd >/dev/null 2>&1; then
+  pnpm_bin="pnpm.cmd"
+else
+  echo "pnpm is required to run pre-commit checks." >&2
+  exit 1
+fi
+
+"$pnpm_bin" test
+"$pnpm_bin" lint
+"$pnpm_bin" format:check
