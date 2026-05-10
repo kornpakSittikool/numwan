@@ -70,3 +70,4 @@ A clean Next.js starter built with the App Router, TypeScript, Bootstrap, pnpm, 
 - The project is pinned to Next.js 15 so the requested `next lint` script remains available.
 - CI installs dependencies with `pnpm install --frozen-lockfile`.
 - Bootstrap is imported globally in `app/layout.tsx`.
+- Dependabot groups minor and patch updates, while major version bumps are left for manual migration work.
