@@ -1,19 +1,21 @@
 :root {
-  --page-bg: #f2f5fb;
-  --page-bg-soft: #e9eef8;
-  --page-ink: #1a2234;
-  --page-muted: #60708a;
-  --page-border: rgba(18, 29, 48, 0.08);
-  --page-surface: rgba(255, 255, 255, 0.92);
+  --font-body: "Aptos", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --page-bg: #f6f4f0;
+  --page-bg-soft: #ffffff;
+  --page-ink: #181512;
+  --page-muted: #6c6761;
+  --page-border: #e7e1da;
+  --page-surface: #ffffff;
   --page-surface-strong: #ffffff;
-  --page-shadow: 0 1.5rem 4rem rgba(15, 23, 42, 0.12);
-  --hero-shadow: 0 2rem 4rem rgba(7, 12, 23, 0.25);
-  --accent: #2563eb;
-  --accent-strong: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
-  --dark-border: rgba(255, 255, 255, 0.14);
-  --dark-ink: #f8fbff;
-  --dark-muted: rgba(248, 251, 255, 0.74);
+  --page-shadow: 0 0.75rem 2rem rgba(24, 21, 18, 0.08);
+  --hero-shadow: 0 1rem 2.5rem rgba(24, 21, 18, 0.1);
+  --accent: #b66f58;
+  --accent-strong: #8a4938;
+  --accent-soft: #f2dfd7;
+  --accent-green: #4c7569;
+  --dark-ink: #ffffff;
+  --dark-muted: rgba(255, 255, 255, 0.78);
 }
 
 html {
@@ -23,14 +25,23 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(
-    180deg,
-    #f7f9fd 0%,
-    var(--page-bg) 45%,
-    var(--page-bg-soft) 100%
-  );
+  background: var(--page-bg);
   color: var(--page-ink);
-  font-family: "Aptos", "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:is(.hero-title, .section-title, .video-card-title) {
+  font-family: var(--font-display);
 }
 
 a {

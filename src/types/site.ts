@@ -1,18 +1,41 @@
-export type HeroStat = {
-  value: string;
+export type NavItem = {
   label: string;
-  description: string;
+  href: string;
 };
 
-export type StarterFeature = {
-  label: string;
+export type HeroFeature = {
+  eyebrow: string;
   title: string;
   description: string;
-  metric: string;
+  ctaLabel: string;
+  href: string;
+  image: string;
+  note: string;
 };
 
-export type CollectionHighlight = {
-  tag: string;
+export type Product = {
+  name: string;
+  category: string;
+  price: string;
+  compareAt?: string;
+  badge?: string;
+  rating: string;
+  image: string;
+};
+
+export type PromoBanner = {
+  eyebrow: string;
   title: string;
   description: string;
+  ctaLabel: string;
+  href: string;
+  image: string;
+  theme?: "light" | "dark";
+};
+
+export type VideoFeature = {
+  title: string;
+  caption: string;
+  image: string;
+  href: string;
 };
