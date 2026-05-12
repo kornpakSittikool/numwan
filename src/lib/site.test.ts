@@ -49,6 +49,8 @@ describe("product data", () => {
     for (const product of products) {
       expect(product.category).toBeTruthy();
       expect(product.price).toBeTruthy();
+      expect(product.price.startsWith("THB ")).toBe(true);
+      expect(product.quantity).toBeGreaterThan(0);
       expect(product.rating).toBeTruthy();
       expect(product.image).toContain("https://");
     }

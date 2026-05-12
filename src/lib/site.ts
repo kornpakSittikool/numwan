@@ -46,6 +46,33 @@ const images = {
     "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80",
 };
 
+type ProductSeed = Omit<Product, "quantity">;
+type ProductInventory = Readonly<
+  Pick<Product, "price" | "quantity" | "compareAt">
+>;
+
+function mergeProductInventory(
+  products: readonly ProductSeed[],
+  inventory: readonly ProductInventory[],
+): Product[] {
+  if (products.length !== inventory.length) {
+    throw new Error("Each product needs matching inventory metadata.");
+  }
+
+  return products.map((product, index) => {
+    const productInventory = inventory[index];
+
+    if (!productInventory) {
+      throw new Error("Missing inventory for a product card.");
+    }
+
+    return {
+      ...product,
+      ...productInventory,
+    };
+  });
+}
+
 export const siteConfig = {
   name: "Numwan",
   description:
@@ -104,7 +131,7 @@ export const shippingMessages = [
   "จัดส่งถึงหน้างานและโรงงาน",
 ] as const;
 
-export const bestSellerProducts: Product[] = [
+const bestSellerProductSeeds: ProductSeed[] = [
   {
     name: "เครื่องมือช่างและอุปกรณ์ซ่อมบำรุง",
     category: "งานซ่อมบำรุงโรงงาน",
@@ -238,7 +265,33 @@ export const bestSellerProducts: Product[] = [
   },
 ];
 
-export const newArrivalProducts: Product[] = [
+const bestSellerInventory: ProductInventory[] = [
+  { price: "THB 2,490", compareAt: "THB 2,890", quantity: 48 },
+  { price: "THB 3,290", quantity: 16 },
+  { price: "THB 890", quantity: 120 },
+  { price: "THB 4,750", compareAt: "THB 5,290", quantity: 12 },
+  { price: "THB 1,190", quantity: 64 },
+  { price: "THB 2,150", quantity: 22 },
+  { price: "THB 650", compareAt: "THB 790", quantity: 180 },
+  { price: "THB 420", quantity: 240 },
+  { price: "THB 1,380", quantity: 36 },
+  { price: "THB 2,980", quantity: 18 },
+  { price: "THB 1,560", quantity: 28 },
+  { price: "THB 3,850", compareAt: "THB 4,190", quantity: 10 },
+  { price: "THB 2,240", quantity: 20 },
+  { price: "THB 1,120", quantity: 44 },
+  { price: "THB 780", compareAt: "THB 940", quantity: 96 },
+  { price: "THB 1,690", quantity: 32 },
+  { price: "THB 540", quantity: 72 },
+  { price: "THB 960", quantity: 58 },
+];
+
+export const bestSellerProducts: Product[] = mergeProductInventory(
+  bestSellerProductSeeds,
+  bestSellerInventory,
+);
+
+const newArrivalProductSeeds: ProductSeed[] = [
   {
     name: "น้ำมันเครื่องและของเหลวรถยนต์",
     category: "ดูแลเครื่องยนต์",
@@ -377,6 +430,32 @@ export const newArrivalProducts: Product[] = [
     image: images.carAccessories,
   },
 ];
+
+const newArrivalInventory: ProductInventory[] = [
+  { price: "THB 790", compareAt: "THB 990", quantity: 85 },
+  { price: "THB 1,450", compareAt: "THB 1,680", quantity: 34 },
+  { price: "THB 2,690", compareAt: "THB 2,990", quantity: 14 },
+  { price: "THB 3,490", compareAt: "THB 3,890", quantity: 12 },
+  { price: "THB 590", quantity: 120 },
+  { price: "THB 1,990", quantity: 18 },
+  { price: "THB 2,850", compareAt: "THB 3,120", quantity: 16 },
+  { price: "THB 450", quantity: 90 },
+  { price: "THB 1,120", quantity: 42 },
+  { price: "THB 2,740", quantity: 20 },
+  { price: "THB 380", quantity: 110 },
+  { price: "THB 3,150", compareAt: "THB 3,490", quantity: 15 },
+  { price: "THB 690", quantity: 65 },
+  { price: "THB 520", quantity: 88 },
+  { price: "THB 460", quantity: 96 },
+  { price: "THB 980", quantity: 54 },
+  { price: "THB 330", quantity: 140 },
+  { price: "THB 1,240", compareAt: "THB 1,420", quantity: 30 },
+];
+
+export const newArrivalProducts: Product[] = mergeProductInventory(
+  newArrivalProductSeeds,
+  newArrivalInventory,
+);
 
 export const videoFeatures: VideoFeature[] = [
   {

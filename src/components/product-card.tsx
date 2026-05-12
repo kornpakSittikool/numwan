@@ -60,6 +60,12 @@ export function ProductCard({
             ) : null}
             <span className="product-price">{product.price}</span>
           </div>
+          <span
+            aria-label={`Quantity available ${product.quantity}`}
+            className="product-quantity"
+          >
+            Qty {product.quantity}
+          </span>
         </div>
       </div>
     </article>
