@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { ProductCard } from "@/components/product-card";
+import { ProductShelf } from "@/components/product-shelf";
 import { SectionHeader } from "@/components/section-header";
 import { Navbar } from "@/components/navbar/navbar";
 import {
@@ -93,16 +93,11 @@ export function HomePage() {
             anchorId="industrial-products-heading"
             title="หมวดหมู่สินค้าประเภทอุตสาหกรรม"
           />
-          <div className="row g-4">
-            {bestSellerProducts.map((product) => (
-              <div key={product.name} className="col-md-6 col-xl-3">
-                <ProductCard
-                  product={product}
-                  categoryHref="#industrial-products-heading"
-                />
-              </div>
-            ))}
-          </div>
+          <ProductShelf
+            ariaLabel="Industrial products"
+            categoryHref="#industrial-products-heading"
+            products={bestSellerProducts}
+          />
         </div>
       </section>
 
@@ -114,16 +109,11 @@ export function HomePage() {
             actionHref="#automotive-products-heading"
             actionLabel="ดูสินค้าทั้งหมด"
           />
-          <div className="row g-4">
-            {newArrivalProducts.map((product) => (
-              <div key={product.name} className="col-md-6 col-xl-3">
-                <ProductCard
-                  product={product}
-                  categoryHref="#automotive-products-heading"
-                />
-              </div>
-            ))}
-          </div>
+          <ProductShelf
+            ariaLabel="Automotive products"
+            categoryHref="#automotive-products-heading"
+            products={newArrivalProducts}
+          />
         </div>
       </section>
 
