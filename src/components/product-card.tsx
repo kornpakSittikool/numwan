@@ -5,12 +5,14 @@ type ProductCardProps = Readonly<{
   product: Product;
   compact?: boolean;
   categoryHref?: string;
+  onOpenDetails?: (product: Product) => void;
 }>;
 
 export function ProductCard({
   product,
   compact = false,
   categoryHref = "#industrial-products-heading",
+  onOpenDetails,
 }: ProductCardProps) {
   return (
     <article
@@ -34,12 +36,20 @@ export function ProductCard({
         >
           Wishlist
         </button>
-        {compact ? null : (
+        {compact || !onOpenDetails ? null : (
           <div className="product-media-actions">
-            <button className="product-media-action" type="button">
-              ดูสินค้า
+            <button
+              className="product-media-action"
+              type="button"
+              onClick={() => onOpenDetails?.(product)}
+            >
+              เลือกสินค้า
             </button>
-            <button className="product-media-action" type="button">
+            <button
+              className="product-media-action"
+              type="button"
+              onClick={() => onOpenDetails?.(product)}
+            >
               รายละเอียด
             </button>
           </div>
@@ -67,6 +77,15 @@ export function ProductCard({
             Qty {product.quantity}
           </span>
         </div>
+        {compact && onOpenDetails ? (
+          <button
+            className="product-select-button"
+            type="button"
+            onClick={() => onOpenDetails?.(product)}
+          >
+            เลือกสินค้า
+          </button>
+        ) : null}
       </div>
     </article>
   );
